@@ -7,7 +7,6 @@ app = Flask(__name__)
 CORS(app)  # Erlaubt Anfragen von Ihrer Android-App
 
 # In-memory "Flugschreiber"-Datenbank.
-# In einer echten Anwendung wäre dies eine richtige Datenbank.
 flight_logs = []
 
 @app.route("/", methods=['POST'])
@@ -45,7 +44,7 @@ def flight_recorder():
 
     log_data['server_timestamp'] = datetime.datetime.utcnow().isoformat()
     flight_logs.append(log_data)
-    print(f"FLIGHT_RECORDER_LOG: {log_data}") # Optional: weiterhin im Server-Log ausgeben
+    print(f"FLIGHT_RECORDER_LOG: {log_data}")
 
     return jsonify({"status": "logged"}), 200
 
@@ -57,17 +56,15 @@ def show_logs():
     html_output += "<table border='1' style='width:100%; border-collapse: collapse;'>"
     html_output += "<tr><th>Server-Zeit</th><th>Client-Zeit</th><th>Typ</th><th>Quelle</th><th>Payload</th><th>Entscheidung</th></tr>"
 
-    # Zeige die neuesten Logs zuerst an
     for log in reversed(flight_logs):
         html_output += "<tr>"
-        html_output += f"<td>{html.escape(log.get('server_timestamp', 'N/A'))}</td>"
-        html_output += f"<td>{html.escape(log.get('clientTimestamp', 'N/A'))}</td>"
-        html_output += f"<td>{html.escape(log.get('eventType', 'N/A'))}</td>"
-        html_output += f"<td>{html.escape(log.get('source', 'N/A'))}</td>"
-        html_output += f"<td>{html.escape(log.get('payload', 'N/A'))}</td>"
-        html_output += f"<td>{html.escape(log.get('decision', 'N/A'))}</td>"
+        html_output += f"<td>{html.escape(str(log.get('server_timestamp', 'N/A')))}</td>"
+        html_output += f"<td>{html.escape(str(log.get('clientTimestamp', 'N/A')))}</td>"
+        html_output += f"<td>{html.escape(str(log.get('eventType', 'N/A')))}</td>"
+        html_output += f"<td>{html.escape(str(log.get('source', 'N/A')))}</td>"
+        html_output += f"<td>{html.escape(str(log.get('payload', 'N/A')))}</td>"
+        html_output += f"<td>{html.escape(str(log.get('decision', 'N/A')))}</td>"
         html_output += "</tr>"
 
     html_output += "</table>"
     return html_output
-
