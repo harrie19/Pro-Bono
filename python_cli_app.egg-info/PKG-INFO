@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: python-cli-app
+Version: 1.0.0
+Summary: Eine interaktive, erweiterbare Kommandozeilenanwendung.
+Author: harrie19
+Requires-Python: >=3.7
+Dynamic: author
+Dynamic: requires-python
+Dynamic: summary

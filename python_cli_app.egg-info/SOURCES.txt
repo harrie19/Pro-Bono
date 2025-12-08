@@ -1,0 +1,11 @@
+README.md
+command_processor.py
+commands.py
+config.py
+main.py
+setup.py
+python_cli_app.egg-info/PKG-INFO
+python_cli_app.egg-info/SOURCES.txt
+python_cli_app.egg-info/dependency_links.txt
+python_cli_app.egg-info/entry_points.txt
+python_cli_app.egg-info/top_level.txt
